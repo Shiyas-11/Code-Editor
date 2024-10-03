@@ -9,11 +9,10 @@ const register = require("./register")
 
 
 //initializations
-const port=8080
+const port=process.env.PORT||8080
 const pathToClient=path.join(__dirname,"../client")
 const app=express()
 // const dir=path.dirname(fileURLToPath(import.meta.url))
-
 
 //app.uses
 app.use(bodyParser.json())
