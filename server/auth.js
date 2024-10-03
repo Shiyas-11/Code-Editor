@@ -18,5 +18,5 @@ auth=async(uname,pass)=>{
 	}
 	return result
 }
-auth("Shiyas","1234")
+
 module.exports = auth

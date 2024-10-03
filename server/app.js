@@ -1,15 +1,16 @@
 //imports
 const express = require("express")
 const cookie =require("cookie-parser")
-const auth = require('./server/auth')
+const auth = require('./auth')
 const bodyParser=require('body-parser')
 const path=require('path')
 const { fileURLToPath } = require("url")
-const register = require("./server/register")
+const register = require("./register")
 
 
 //initializations
-const port=env.getport() || 8080
+const port=8080
+const pathToClient=path.join(__dirname,"../client")
 const app=express()
 // const dir=path.dirname(fileURLToPath(import.meta.url))
 
@@ -17,30 +18,26 @@ const app=express()
 //app.uses
 app.use(bodyParser.json())
 app.use(express.urlencoded({extended:true}))
-app.use(express.static(path.join(dir)))
-
+app.use(express.static(path.join(__dirname,'../public')))
 
 app.get("/",(req,res)=>{
-
+	res.sendFile(path.join(pathToClient,"sample.html"))
 })
 
+
 app.post("/login",(req,res)=>{
-	const res=auth(req.body.username,req.body.password)
-	if(res.length!=0){
+	const result=auth(req.body.username,req.body.password)
+	if(result.length!=0){
 
 	}
 	else{
-		res.redirect("/loginPage")
+		result.redirect("/loginPage")
 	}
 })
 
 app.post("/register",(req,res)=>{
 	register(req.body)
 })
-
-
-
-
 
 
 
