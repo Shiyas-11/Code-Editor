@@ -4,12 +4,14 @@
     "codemirror": "^5.65.18",
     "cookie-parser": "^1.4.6",
     "express": "^4.21.0",
+    "fs": "^0.0.1-security",
     "meta": "^0.0.6",
     "mongodb": "^6.9.0",
     "mongoose": "^8.7.0",
-    "nodemon": "^3.1.7"
+    "nodemon": "^3.1.7",
+    "ws": "^8.18.0"
   },
-  "name": "ceditor",
+  "name": "codeeditor",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -20,8 +22,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./server/app.js",
     "restart": "npm run dev",
-    "dev": "node ./server/app.js"
+    "dev": "nodemon ./server/app.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "keywords": []
 }

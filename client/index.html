@@ -1,119 +1,218 @@
-<div style="float:left;height:40em;width:40em;background-color:gray;margin-top: 3em;margin-left:3em">
-
-</div>
-
-
-<div class="container mt-5" style="background-color: bisque;">
-    <div class="row">
-        <div class="col-md-6 resizable bg-light">
-            <h3>Left Column</h3>
-            <p>This column can be resized!</p>
-        </div>
-        <div class="col-md-6 resizable bg-secondary text-white">
-            <h3>Right Column</h3>
-            <p>This column can also be resized!</p>
-        </div>
-    </div>
-</div>
-
-<div class="container mt-5">
-    <div class="d-flex">
-        <div class="flex-grow-1 bg-light border">
-            <h5 class="text-center">Column 1</h5>
-            HTML stands for HyperText Markup Language.
-            It is the standard language used to create
-            and design web pages on the internet.
-        </div>
-        <div class="flex-grow-1 bg-light border">
-            <h5 class="text-center">Column 2</h5>
-            CSS or Cascading Style Sheets is a stylesheet
-            language used to add styles to the HTML document.
-            It describes how HTML elements should be
-            displayed on the web page.
-        </div>
-    </div>
-</div>
-
-<div id="container">
-    <div class="left">
-        <textarea></textarea>
-    </div>
-    <div class="content">b</div>
-</div>
-<a class="navbar-brand" href="#">
-    <img style="float:right" src="/docs/4.3/assets/brand/bootstrap-solid.svg" width="30" height="30" alt="">
-  </a>
-
-  <a href="/account" style="text-decoration:none" class="navlink"><svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-profile-circled" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M4.271 18.346S6.5 15.5 12 15.5s7.73 2.846 7.73 2.846M12 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"></path></svg><span >Username</span>
-  </a>
-
-
-
-
-
-
-
-
-
-
-
-
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resizable Column Example</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css">
+    <title>Simple Header Example</title>
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="plugin/codemirror-5.65.18/lib/codemirror.css">
+    <link rel="stylesheet" href="plugin/codemirror-5.65.18/theme/midnight.css">
+    <link rel="stylesheet" href="plugin/codemirror-5.65.18/theme/material.css">
+    <link rel="stylesheet" href="style.css">
+
     <style>
+        html{
+            width: 100%;
+            padding: 0%;
+            margin: 0%;
+        }
+        body{
+            width: 100%;
+            padding: 2%;
+            padding: 0%;
+            margin: 0%;
+            height: 90vh;
+        }
+        .resizable {
+            resize: horizontal; /* Allow horizontal resizing */
+            overflow: none; /* Add scroll if needed */
+            min-width: 100px; /* Minimum width */
+            max-width: 80%; /* Maximum width */
+        }
+        #container {
+            position: relative;
+            min-width: 310px;
+            margin-top: 4em;
+        }
+        
+        #container .left {
+            background-color:bisque;
+            margin-left: 3em;
+            margin-right: 14.5%;
+            height: 200px;
+            width: 900px;
+            resize: horizontal;
+        }
+        
+        #container .content {
+            float: right;
+            margin-right: 3em;
+            background-color:bisque;
+            width: 500px;
+            height: 200px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            resize: both;
+        }
+        
         .container {
             display: flex;
-            height: 100vh; /* Full height for demonstration */
+            width: 100%; /* Total width is fixed to the display area */
+            box-sizing: border-box;
         }
-        .column {
-            padding: 20px;
+        
+        .resizable {
+            position: relative;
             border: 1px solid #ccc;
-            overflow: auto; /* Allows scrolling if content overflows */
+            padding: 10px;
+            box-sizing: border-box;
+            flex-grow: 1; /* Allow both elements to grow */
         }
+        
+        .content {
+            padding: 10px;
+        }
+        
         .resizer {
-            cursor: ew-resize; /* Cursor change to indicate resizing */
-            width: 5px; /* Width of the resizer */
-            background: #000; /* Color of the resizer */
+            width: 10px;
+            cursor: ew-resize;
+            background: #333;
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
         }
-    </style>
+        
+        .resizable {
+            position: relative;
+            border: 1px solid #ccc;
+            padding: 0;
+            padding-right: 1%; /* Remove padding from the resizable for the textarea to fit */
+            box-sizing: border-box;
+            flex-grow: 1; /* Allow both elements to grow */
+        }
+        
+        .content {
+            padding: 2em; /* Adjust padding to maintain the desired space */
+            box-sizing: border-box;
+            height: 100%; /* Ensure the content area takes full height */
+        }
+        
+        .resizable-textarea {
+            width: calc(100% - 4em); /* Full width minus margins */
+            height: calc(100% - 1em); /* Full height minus margins */
+            margin: 0; /* Remove margins for the textarea */
+            padding: 1em; /* Optional: Add padding inside the textarea */
+            box-sizing: border-box; /* Ensure padding is included in width/height */
+            resize: none; /* Optional: Disable native resizing of the textarea */
+        }
 
-    <div class="container">
-        <div class="column" id="left-column" style="flex: 1;">
-            Left Column
+        #codeEditor{
+            border: solid black 2px;
+            border-radius: 3px;
+        }
+        #div2 {
+            display: flex;
+            align-items: center; /* Center items vertically */
+            height: 60px; /* Adjust as needed for your layout */
+            padding: 0; /* Optional, to remove extra space */
+        }
+        
+        .languageSwitch {
+            margin: 1.5em; /* Maintain margin for buttons */
+        }
+        .navSwitch {
+            margin: 1.5em; /* Maintain margin for buttons */
+        }
+        
+        .navlink {
+            margin-left: auto; /* Push the link to the right */
+        }
+        
+        .icon {
+            margin-right: 2em; /* Adjust the margin on the icon */
+        }
+        
+    </style>
+    <!-- CODE MIRROR -->
+    <script src="plugin/codemirror-5.65.18/lib/codemirror.js"></script>
+    <script src="plugin/codemirror-5.65.18/addon/edit/closebrackets.js"></script>
+    <script src="plugin/codemirror-5.65.18/mode/javascript/javascript.js"></script>
+    <script src="plugin/codemirror-5.65.18/mode/clike/clike.js"></script>
+    <script src="plugin/codemirror-5.65.18/mode/python/python.js"></script>
+
+</head>
+
+<body>
+    <header>
+
+            <div style="background-color: rgb(179, 171, 171); color: rgb(205, 234, 234);" id="div2" class="container">
+                <button style="margin: 1.5em; margin-left: 3em; width: 6em; border: none; border-radius: 0.5em;padding: 0.4em;" class="navSwitch">CodeEditor</button>
+                <button style="margin: 1.5em; width: 6em; border: none; border-radius: 0.5em;padding: 0.4em;" class="navSwitch">About</button>
+                <button style="margin: 1.5em; width: 6em; border: none; border-radius: 0.5em;padding: 0.4em;" class="navSwitch">Contact</button>
+                <a href="/account" style="text-decoration: none;" class="navlink">
+                    <img src="profile-svgrepo-com.svg" alt="Profile" class="icon" style="width: 26px; height: 26px;">
+                </a>
+            </div>
+            
+            
+
+    </header>
+
+    <div style="background-color:rgb(40, 41, 42); color:rgb(205, 234, 234);"  id="div2" >
+        <button style="margin:1.5em;margin-left:3em;width:4em;border:none;border-radius:0.5em;padding: 0.4em;" class="languageSwitch" >C</button>
+        <button style="margin:1.5em;width:4em;border:none;border-radius:0.5em;padding: 0.4em;" class="languageSwitch" >Cpp</button>
+        <button style="margin:1.5em;width:4em;border:none;border-radius:0.5em;padding: 0.4em;" class="languageSwitch" >Python</button>
+        <button style="margin:1.5em;width:4em;border:none;border-radius:0.5em;padding: 0.4em;" class="languageSwitch" >Java</button>
+        <button style="margin:1.5em;width:6em;border:none;border-radius:0.5em;padding: 0.4em;" class="languageSwitch" >JavaScript</button>
+    </div>
+    
+    <div class="container" style="height: 38em; margin-top: 1em;padding:2%;">
+        <div class="resizable" id="resizable1" style="width:40em">
+            <div class="content" id="content" style="border-style: none;">
+                <textarea class="resizable-textarea" id="codeEditor"></textarea>
+            </div>
+            <div class="resizer"></div>
         </div>
-        <div class="resizer" id="resizer"></div>
-        <div class="column" id="right-column" style="flex: 2;">
-            Right Column
+        <div class="resizable" id="resizable2">
+            <div class="content">
+                <button style="margin-left:0em;border:none;width:4em;border-radius:0.5em;float:left;margin-bottom:2em" id="run">Run</button>
+                <button style="margin-left:0.9em;width:4em;border:none;border-radius:0.5em;float:left;margin-bottom:2em">Copy</button>
+                <button style="width:4em;border:none;border-radius:0.5em;float:right;margin-bottom:3em;margin-right:2em">Save</button>
+                <br>
+            <div class="Output" id="Output">
+
+            </div>
+            </div>
+            
+            <div class="resizer"></div>
         </div>
     </div>
+    
 
-    <script>
-        const resizer = document.getElementById('resizer');
-        const leftColumn = document.getElementById('left-column');
-        const rightColumn = document.getElementById('right-column');
-
-        resizer.addEventListener('mousedown', function (e) {
-            document.addEventListener('mousemove', resize);
-            document.addEventListener('mouseup', stopResize);
-        });
-
-        function resize(e) {
-            const leftWidth = e.clientX - leftColumn.getBoundingClientRect().left;
-            const rightWidth = rightColumn.getBoundingClientRect().right - e.clientX;
-            if (leftWidth > 100 && rightWidth > 100) { // Minimum width limit
-                leftColumn.style.width = leftWidth + 'px';
-                rightColumn.style.width = `calc(100% - ${leftWidth + 5}px)`; // Adjust for resizer width
-            }
-        }
-
-        function stopResize() {
-            document.removeEventListener('mousemove', resize);
-            document.removeEventListener('mouseup', stopResize);
-        }
-    </script>
-
+    <div class="container">
+          <div class="col-md-4 d-flex align-items-center">
+            <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+              <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+            </a>
+            <span class="text-muted">©CodeEditor</span>
+          </div>
+    
+      </div>
+    
+      
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="./resize.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="jquery.js"></script>
+    <script src="req.js"></script>
+    <script src="lang.js"></script>
+    <script type="module" src="execute.js"></script>
+    <script type="module" src="CMScripts.js"></script>
+    
+</body>
+</html>
