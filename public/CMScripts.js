@@ -48,12 +48,18 @@ run.addEventListener("click", async (e) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          language: "python",
+          language: `${currentLanguage}`,
           code: codeEditor.getValue(),
         }),
       }
     );
     let out = await output.json();
+
+    if (out.err) {
+      $("#Output").css("{color:red}");
+    } else {
+      $("#Output").css("{color:black}");
+    }
     console.log("json", JSON.stringify(out));
     let formattedOut = out.output.replaceAll("\r\n", "<br>");
     console.log("formatte", formattedOut);

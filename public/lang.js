@@ -22,6 +22,7 @@ let Language = {
   Cpp: {
     mode: "text/x-c++src",
     extension: "cpp",
-    sampletext: '#include<cstdio.h>\nint main(){\n\tprintf("Hello World");\n}',
+    sampletext:
+      '#include<iostream>\nint main(){\n\tstd::cout<<"hello world"<<std::endl;\nreturn 0;\n}',
   },
 };

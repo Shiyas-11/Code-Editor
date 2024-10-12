@@ -3,6 +3,7 @@ const router = express.Router();
 const fs = require("fs");
 const pyRun = require("./pyRun");
 const jsRun = require("./jsRun");
+const cppCompileAndRun = require("./cppRun");
 
 const idgenerator = () => {
   const characters =
@@ -22,30 +23,56 @@ router.get("/hello", (req, res) => {
 });
 
 router.post("/runPython", async (req, res) => {
+  let fname = `${idgenerator()}.py`;
   try {
-    let fname = `${idgenerator()}.py`;
     await fs.promises.writeFile(`./server/${fname}`, req.body.code);
     console.log(`File written: ${fname}`);
 
     const result = await pyRun(fname);
-    res.json({ output: result });
+    res.json({ output: result, error: false });
   } catch (err) {
-    console.error(err);
-    res.status(500).send("Internal Server Error");
+    err.replaceAll(
+      `C:\\Users\\shiya\\Documents\\s5IT\\WAD\\CodeEditor\\server\\${fname}`,
+      "File.py"
+    );
+    console.log(err);
+    res.json({ output: err, error: true });
   }
 });
 
 router.post("/runJavaScript", async (req, res) => {
+  let fname = `${idgenerator()}.js`;
   try {
-    let fname = `${idgenerator()}.js`;
     await fs.promises.writeFile(`./server/${fname}`, req.body.code);
     console.log(`File written: ${fname}`);
 
     const result = await jsRun(fname);
-    res.json({ output: result });
+    res.json({ output: result, error: false });
   } catch (err) {
-    console.error(err);
-    res.status(500).send("Internal Server Error");
+    err.replaceAll(
+      `C:\\Users\\shiya\\Documents\\s5IT\\WAD\\CodeEditor\\server\\${fname}`,
+      "File.js"
+    );
+    console.log(err);
+    res.json({ output: err, error: false });
+  }
+});
+
+router.post("/runCpp", async (req, res) => {
+  let fname = `${idgenerator()}`;
+  try {
+    await fs.promises.writeFile(`./server/${fname}.cpp`, req.body.code);
+    console.log(`File written: ${fname}`);
+
+    const result = await cppCompileAndRun(fname);
+    res.json({ output: result, error: false });
+  } catch (err) {
+    err.replaceAll(
+      `C:\\Users\\shiya\\Documents\\s5IT\\WAD\\CodeEditor\\server\\${fname}`,
+      "File.cpp"
+    );
+    console.log(err);
+    res.json({ output: err, error: false });
   }
 });
 

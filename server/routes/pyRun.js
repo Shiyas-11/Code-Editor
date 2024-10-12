@@ -24,9 +24,12 @@ const pyRun = async (fname) => {
       });
 
       if (code !== 0) {
-        reject(
-          new Error(`Python process exited with code ${code}: ${errorData}`)
+        err = `${errorData}`.replaceAll(
+          `File "C:\\Users\\shiya\\Documents\\s5IT\\WAD\\CodeEditor\\server\\${fname}"`,
+          "main.py"
         );
+        console.log(err);
+        reject(err);
       } else {
         resolve(outputData);
       }
