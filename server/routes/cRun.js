@@ -1,34 +1,34 @@
 const { spawn } = require("child_process");
 const fs = require("fs");
 
-async function cppCompile(fname) {
+async function cCompile(fname) {
   return new Promise((resolve, reject) => {
-    const CppCompile = spawn("g++", [
-      `./server/${fname}.cpp`,
+    const cCompile = spawn("gcc", [
+      `./server/${fname}.c`,
       "-o",
       `./server/${fname}`,
     ]);
 
     let errorData = "";
 
-    CppCompile.stderr.on("data", (data) => {
+    cCompile.stderr.on("data", (data) => {
       errorData += data.toString();
     });
 
-    CppCompile.stdout.on("data", (data) => {});
+    cCompile.stdout.on("data", (data) => {});
 
-    CppCompile.on("close", (code) => {
+    cCompile.on("close", (code) => {
       if (code !== 0) {
         console.error(`Compilation error with code ${code}`);
         reject(`Error compiling: ${errorData}`);
-        fs.unlink(`./server/${fname}.cpp`, (err) => {
+        fs.unlink(`./server/${fname}.c`, (err) => {
           if (err) {
             console.error(`Error deleting file: ${err}`);
           }
         });
       } else {
         console.log(
-          `Compilation successful: C++ script exited with code ${code}`
+          `Compilation successful: C script exited with code ${code}`
         );
         resolve();
       }
@@ -36,23 +36,23 @@ async function cppCompile(fname) {
   });
 }
 
-const cppRun = async (fname) => {
+const cRun = async (fname) => {
   return new Promise((resolve, reject) => {
-    const cppProcess = spawn(`./server/${fname}.exe`);
+    const cProcess = spawn(`./server/${fname}.exe`);
 
     let outputData = "";
     let errorData = "";
 
-    cppProcess.stdout.on("data", (data) => {
+    cProcess.stdout.on("data", (data) => {
       outputData += data.toString();
     });
 
-    cppProcess.stderr.on("data", (data) => {
+    cProcess.stderr.on("data", (data) => {
       errorData += data.toString();
     });
 
-    cppProcess.on("close", (code) => {
-      fs.unlink(`./server/${fname}.cpp  `, (err) => {
+    cProcess.on("close", (code) => {
+      fs.unlink(`./server/${fname}.c`, (err) => {
         if (err) {
           console.error(`Error deleting file: ${err}`);
         }
@@ -73,15 +73,15 @@ const cppRun = async (fname) => {
   });
 };
 
-async function cppCompileAndRun(fname) {
+async function cCompileAndRun(fname) {
   try {
-    await cppCompile(fname);
+    await cCompile(fname);
 
-    const result = await cppRun(fname);
+    const result = await cRun(fname);
     return result;
   } catch (err) {
     return err.toString();
   }
 }
 
-module.exports = cppCompileAndRun;
+module.exports = cCompileAndRun;

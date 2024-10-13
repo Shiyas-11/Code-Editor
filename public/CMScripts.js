@@ -61,7 +61,7 @@ run.addEventListener("click", async (e) => {
       $("#Output").css("{color:black}");
     }
     console.log("json", JSON.stringify(out));
-    let formattedOut = out.output.replaceAll("\r\n", "<br>");
+    let formattedOut = out.output.replaceAll("\n", "<br>");
     console.log("formatte", formattedOut);
     outdiv.innerHTML = formattedOut;
   }, 1200);

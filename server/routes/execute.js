@@ -4,6 +4,7 @@ const fs = require("fs");
 const pyRun = require("./pyRun");
 const jsRun = require("./jsRun");
 const cppCompileAndRun = require("./cppRun");
+const cCompileAndRun = require("./cRun");
 
 const idgenerator = () => {
   const characters =
@@ -71,6 +72,21 @@ router.post("/runCpp", async (req, res) => {
       `C:\\Users\\shiya\\Documents\\s5IT\\WAD\\CodeEditor\\server\\${fname}`,
       "File.cpp"
     );
+    console.log(err);
+    res.json({ output: err, error: false });
+  }
+});
+
+router.post("/runC", async (req, res) => {
+  let fname = `${idgenerator()}`;
+  try {
+    await fs.promises.writeFile(`./server/${fname}.c`, req.body.code);
+    console.log(`File written: ${fname}`);
+
+    const result = await cCompileAndRun(fname);
+    res.json({ output: result, error: false });
+  } catch (err) {
+    err.replaceAll(`\|`, "<br>");
     console.log(err);
     res.json({ output: err, error: false });
   }
