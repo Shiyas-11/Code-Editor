@@ -1,29 +1,104 @@
 .hl {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333333;
-  }
-  
-.hl li {
-    float: left;
-  }
-  
-.hl li p {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 16px;
-    text-decoration: none;
-  }
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333333;
+}
 
-.Output{
+.hl li {
+  float: left;
+}
+
+.hl li p {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 16px;
+  text-decoration: none;
+}
+
+body {
+  background-image: url("./bg.jpeg");
+  background-size: contain;
+  background-color: #cccccc;
+}
+
+.Output {
   border: solid black 2px;
   height: 55vh;
   width: 100%;
   overflow-x: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;
-  float:inherit;
+  float: inherit;
+}
+
+.languageSwitch {
+  min-width: 5%;
+  color: black;
+  font-weight: 200;
+  background: linear-gradient(
+    rgb(78, 182, 169),
+    rgb(112, 216, 204),
+    rgb(78, 182, 169)
+  );
+}
+
+.languageSwitch:hover {
+  color: aliceblue;
+  width: fit-content;
+  font-weight: 600;
+  background: linear-gradient(
+    rgb(39, 118, 109),
+    rgb(62, 145, 135),
+    rgb(39, 118, 109)
+  );
+}
+
+header div {
+  background: linear-gradient(
+    rgb(9, 19, 34),
+    rgb(21, 51, 80),
+    rgb(39, 101, 148),
+    rgb(194, 238, 233)
+  );
+  background: transparent;
+  backdrop-filter: saturate(5);
+}
+
+#div3 {
+  display: flex;
+  align-items: center;
+  height: 60px;
+  padding: 0;
+  background: linear-gradient(
+    rgb(9, 37, 23),
+    rgb(25, 96, 85),
+    rgb(17, 65, 53),
+    rgb(9, 34, 24)
+  );
+}
+
+.resizable {
+  backdrop-filter: blur(50px);
+  border-radius: 5px;
+}
+
+#codeEditor {
+  cursor: text;
+  backdrop-filter: blur(50px);
+}
+.resizer {
+  background-color: transparent;
+  visibility: initial;
+}
+
+#Output {
+  padding: 2.5%;
+
+  max-height: 51vh;
+  color: aliceblue;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
 }

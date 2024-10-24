@@ -1,0 +1,29 @@
+.hl {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333333;
+}
+
+.hl li {
+  float: left;
+}
+
+.hl li p {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 16px;
+  text-decoration: none;
+}
+
+.Output {
+  border: solid black 2px;
+  height: 55vh;
+  width: 100%;
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  float: inherit;
+}

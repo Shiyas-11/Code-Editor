@@ -23,7 +23,7 @@ async function cppCompile(fname) {
         reject(`Error compiling: ${errorData}`);
         fs.unlink(`./server/${fname}.cpp`, (err) => {
           if (err) {
-            console.error(`Error deleting file: ${err}`);
+            console.error(`Error deleting file:123 ${err}`);
           }
         });
       } else {
@@ -52,7 +52,7 @@ const cppRun = async (fname) => {
     });
 
     cppProcess.on("close", (code) => {
-      fs.unlink(`./server/${fname}.cpp  `, (err) => {
+      fs.unlink(`./server/${fname}.cpp`, (err) => {
         if (err) {
           console.error(`Error deleting file: ${err}`);
         }
